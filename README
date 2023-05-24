@@ -1,0 +1,11 @@
+The project is a command-line shell implemented in the C programming language, designed to provide a basic interactive interface for users to enter and execute commands. The shell follows the typical behavior of a shell, allowing users to execute commands with or without arguments, handle the "exit" command to terminate the shell, and display the environment variables using the "env" command.
+
+The functionality of the shell is achieved through various components. The main function serves as the entry point, where the shell enters an infinite loop, continuously prompting the user for input. The input is then read using the getline function and stored in a buffer. The buffer is tokenized into separate arguments using the tokenize_input function, which utilizes the strtok function to split the input based on spaces.
+
+The tokenized input is then processed to determine the appropriate action. If the user enters the "exit" command, the handle_exit function is invoked to terminate the shell. Similarly, if the user enters the "env" command, the handle_env function is called to display the environment variables.
+
+For other commands, the shell forks a child process using the fork system call. The child process then executes the command using the execute_command function. This function handles command execution by checking if the command is an absolute path or a relative path. If it is an absolute path, the command is executed directly. Otherwise, the shell searches for the command in the directories listed in the PATH environment variable and executes it if found.
+
+Proper error handling is incorporated into the shell. If a command is not found, the write_error_message function generates an error message indicating the command, program name, and line number. The error message is then displayed on the standard error output.
+
+Overall, this project serves as a foundational implementation of a command-line shell, introducing key concepts such as command parsing, process creation, input handling, and error management. It provides a starting point for building more advanced shell functionalities and serves as a learning tool for understanding shell operation and basic system calls in C.
